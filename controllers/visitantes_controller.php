@@ -2,11 +2,12 @@
 class VisitantesController
 {
   public function index()
-  {
-    // we store all the persona in a variable
-    $visitantes = Visitante::all();
-    require_once('views/visitantes/index.php');
-  }
+    {
+       
+        $visitantes = Visitante::allPerson();
+
+        require_once('views/visitantes/index.php');
+    }
 
   public function show()
   {
@@ -37,9 +38,50 @@ class VisitantesController
           $fecha_nacimiento = $_POST['fecha_nacimiento'];
 
           // echo $correo;
-          $miembro = Visitante::create($ci, $nombre, $apellido, $correo, $celular, $direccion, $sexo, $fecha_nacimiento);
+          $visitante = Visitante::create($ci, $nombre, $apellido, $correo, $celular, $direccion, $sexo, $fecha_nacimiento);
 
-          if ($miembro) {
+          if ($visitante) {
+              // Redirige a una página de éxito o muestra un mensaje de éxito
+              header("Location: ?controller=visitantes&action=index");
+              exit();
+          } else {
+              // Maneja el caso en el que la creación de la persona falla
+              // Puedes redirigir a una página de error o mostrar un mensaje de error
+              header("Location: ?controller=home&action=error");
+              exit();
+          }
+      }
+      
+  }
+
+  public function edit()
+  {
+     
+      if (!isset($_GET['id']))
+          return call('pages', 'error');
+      $visitante = Visitante::find($_GET['id']);
+
+      require_once('views/visitantes/edit.php');
+
+  }
+  public function update()
+  {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $id = $_POST['id'];
+          $ci = $_POST['ci'];
+          $nombre = $_POST['nombre'];
+          $apellido = $_POST['apellido'];
+          $correo = $_POST['correo'];
+          $celular = $_POST['celular'];
+          $direccion = $_POST['direccion'];
+          $sexo = $_POST['sexo'];
+          $tipo = $_POST['tipo'];
+          $fecha_nacimiento = $_POST['fecha_nacimiento'];
+
+          // echo $correo;
+          $visitante = Visitante::update($id, $ci, $nombre, $apellido, $correo, $celular, $direccion, $sexo, $fecha_nacimiento,$tipo);
+
+          if ($visitante) {
               // Redirige a una página de éxito o muestra un mensaje de éxito
               header("Location: ?controller=visitantes&action=index");
               exit();

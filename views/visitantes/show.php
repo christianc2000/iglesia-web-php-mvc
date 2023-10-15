@@ -1,4 +1,4 @@
-<p>Miembro - <?php echo $visitante->id ?></p>
+<p>Miembro - <?php echo $miembro->id ?></p>
 
-<p><?php echo $visitante->id; ?></p>
-<p><?php echo $visitante->fecha_registro_visitante; ?></p>
+<p><?php echo $miembro->id; ?></p>
+<p><?php echo $miembro->fecha_registro_miembro; ?></p>
