@@ -35,7 +35,7 @@ class MiembrosController
             $parentezco = $_POST['parentezco'];
             echo "ingresa a storeParentezco " . $miembroa_id . ", " . $miembrob_id . ", " . $parentezco;
             $parentezco = Parentezco::create($parentezco, $miembroa_id, $miembrob_id);
-            echo "pasa a storeParentezco " . $parentezco;
+        //    echo "pasa a storeParentezco " . $parentezco;
             if ($parentezco) {
                 // Redirige a una página de éxito o muestra un mensaje de éxito
                 header("Location: ?controller=miembros&action=parentezco&id=" . $miembroa_id);

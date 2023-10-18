@@ -37,7 +37,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href='?controller=miembros&action=index'>Miembros</a></li>
-                <li><a class="dropdown-item" href='?controller=visitantes&action=index'>Visitantes</a></li>
+                <!-- <li><a class="dropdown-item" href='?controller=visitantes&action=index'>Visitantes</a></li> -->
                 <!-- <li>
                     <hr class="dropdown-divider">
                   </li>
@@ -45,7 +45,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Asistencia</a>
+              <a class="nav-link" href="?controller=actividads&action=index">Actividades</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="?controller=ministerios&action=index">Ministerios</a>

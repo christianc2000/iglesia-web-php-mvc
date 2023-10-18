@@ -31,6 +31,13 @@ function call($controller, $action)
       require_once('models/ministerio.php');
       $controller = new MinisteriosController();
       break;
+    case 'actividads':
+      // we need the model to query the database later in the controller
+      require_once('models/miembro.php');
+      require_once('models/actividad.php');
+      require_once('models/asistencia.php');
+      $controller = new ActividadController();
+      break;
   }
 
   $controller->{$action}();
@@ -40,9 +47,10 @@ function call($controller, $action)
 $controllers = array(
   'pages' => ['home', 'error'],
   'personas' => ['index', 'show'],
-  'miembros' => ['index','index_suspended', 'create', 'store', 'edit', 'update', 'show', 'delete', 'enable', 'deleteSoftMiembro', 'deleteParentezco', 'parentezco', 'storeParentezco'],
+  'miembros' => ['index', 'index_suspended', 'create', 'store', 'edit', 'update', 'show', 'delete', 'enable', 'deleteSoftMiembro', 'deleteParentezco', 'parentezco', 'storeParentezco'],
   'visitantes' => ['index', 'create', 'store', 'edit', 'update', 'show'],
-  'ministerios' => ['index', 'create', 'store', 'edit', 'update', 'show', 'historialEncargadosMinisterio', 'storeEncargado', 'finalizarCargoMinisterio']
+  'ministerios' => ['index', 'create', 'store', 'edit', 'update', 'show', 'historialEncargadosMinisterio', 'storeEncargado', 'finalizarCargoMinisterio'],
+  'actividads' => ['index', 'create', 'store', 'edit', 'update', 'show', 'asistencia']
 );
 
 if (array_key_exists($controller, $controllers)) {

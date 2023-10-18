@@ -59,7 +59,7 @@ class Parentezco
             // Confirmar la transacción
             $db->commit();
 
-            return [$ultimoInsertId];
+            return true;
         } catch (PDOException $e) {
             // En caso de error, revertir la transacción
             echo $e;

@@ -43,6 +43,7 @@
                     <label for="fecha_nacimiento" class="form-label">FECHA DE NACIMIENTO</label>
                     <input class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
                 </div>
+                
                 <div class="col-md-6">
                     <button type="submit" class="button-principal btn-sm">Guardar</button>
                 </div>
