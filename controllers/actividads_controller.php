@@ -1,4 +1,7 @@
 <?php
+require_once('models/miembro.php');
+require_once('models/actividad.php');
+require_once('models/asistencia.php');
 class ActividadController
 {
     public function index()
@@ -104,9 +107,31 @@ class ActividadController
             return call('pages', 'error');
         $miembros = Miembro::allPerson();
         $actividad = Actividad::find($_GET['id']);
-      
-        $asistencias = Asistencia::getAllAsistencia($_GET['id']);
 
+        $asistencias = Asistencia::getAllAsistencia($_GET['id']);
+        //echo $asistencias[1][1];
         require_once('views/actividades/asistencia.php');
+    }
+
+    public function storeAsistencia()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $actividad_id = $_POST['actividad_id'];
+            $persona_id = $_POST['persona_id'];
+
+            // echo "ingresa a storeParentezco " . $miembroa_id . ", " . $miembrob_id . ", " . $parentezco;
+            $asistencia = Asistencia::create($persona_id, $actividad_id);
+            //    echo "pasa a storeParentezco " . $parentezco;
+            if ($asistencia) {
+                // Redirige a una página de éxito o muestra un mensaje de éxito
+                header("Location: ?controller=actividads&action=asistencia&id=" . $actividad_id);
+                exit();
+            } else {
+                // Maneja el caso en el que la creación de la persona falla
+                // Puedes redirigir a una página de error o mostrar un mensaje de error
+                header("Location: ?controller=home&action=error");
+                exit();
+            }
+        }
     }
 }

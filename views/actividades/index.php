@@ -7,7 +7,7 @@
 <div class="card vh-100 p-2">
     <div class="card-body flex-column h-100">
         <div class="pb-2">
-            <a class="button-principal" href="?controller=actividades&action=create">Crear Actividad</a>
+            <a class="button-principal" href="?controller=actividads&action=create">Crear Actividad</a>
         </div>
         <table class="table table-striped" id="table" style="width:100%">
             <thead>
@@ -17,6 +17,7 @@
                 <th>HORA INICIO</th>
                 <th>HORA FIN</th>
                 <th>MONTO TOTAL</th>
+                <th>ACTUALIZADO</th>
                 <th>OPCIÓN</th>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@
                         <td><?php echo $actividad->fecha ?></td>
                         <td><?php echo $actividad->horaInicio ?></td>
                         <td><?php echo $actividad->horaFin ?></td>
+                        <td><?php echo $actividad->montoTotal ?></td>
                         <td><?php echo (DateTime::createFromFormat('Y-m-d H:i:s.uP', $actividad->updated_at))->format('Y-m-d H:i:s'); ?></td>
                         <td>
                             <div class="dropdown">

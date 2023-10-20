@@ -1,4 +1,7 @@
 <?php
+require_once('models/visitante.php');
+require_once('models/miembro.php');
+require_once('models/parentezco.php');
 class MiembrosController
 {
     public function index()
@@ -35,7 +38,7 @@ class MiembrosController
             $parentezco = $_POST['parentezco'];
             echo "ingresa a storeParentezco " . $miembroa_id . ", " . $miembrob_id . ", " . $parentezco;
             $parentezco = Parentezco::create($parentezco, $miembroa_id, $miembrob_id);
-        //    echo "pasa a storeParentezco " . $parentezco;
+            //    echo "pasa a storeParentezco " . $parentezco;
             if ($parentezco) {
                 // Redirige a una página de éxito o muestra un mensaje de éxito
                 header("Location: ?controller=miembros&action=parentezco&id=" . $miembroa_id);
@@ -146,20 +149,21 @@ class MiembrosController
     {
         if (!isset($_GET['id']))
             return call('pages', 'error');
-            $miembro = Miembro::deleteSoft($_GET['id']);
+        $miembro = Miembro::deleteSoft($_GET['id']);
 
-            if ($miembro) {
-                // Redirige a una página de éxito o muestra un mensaje de éxito
-                header("Location: ?controller=miembros&action=index");
-                exit();
-            } else {
-                // Maneja el caso en el que la creación de la persona falla
-                // Puedes redirigir a una página de error o mostrar un mensaje de error
-                header("Location: ?controller=home&action=error");
-                exit();
-            }
+        if ($miembro) {
+            // Redirige a una página de éxito o muestra un mensaje de éxito
+            header("Location: ?controller=miembros&action=index");
+            exit();
+        } else {
+            // Maneja el caso en el que la creación de la persona falla
+            // Puedes redirigir a una página de error o mostrar un mensaje de error
+            header("Location: ?controller=home&action=error");
+            exit();
+        }
     }
-    public function index_suspended(){
+    public function index_suspended()
+    {
         $miembros = Miembro::allPersonSuspended();
         require_once('views/miembros/index-suspended.php');
     }
@@ -167,35 +171,35 @@ class MiembrosController
     {
         if (!isset($_GET['id']))
             return call('pages', 'error');
-            echo "entra enable";
-            $miembro = Miembro::enable($_GET['id']);
+        echo "entra enable";
+        $miembro = Miembro::enable($_GET['id']);
 
-            if ($miembro) {
-                // Redirige a una página de éxito o muestra un mensaje de éxito
-                header("Location: ?controller=miembros&action=index");
-                exit();
-            } else {
-                // Maneja el caso en el que la creación de la persona falla
-                // Puedes redirigir a una página de error o mostrar un mensaje de error
-                header("Location: ?controller=home&action=error");
-                exit();
-            }
+        if ($miembro) {
+            // Redirige a una página de éxito o muestra un mensaje de éxito
+            header("Location: ?controller=miembros&action=index");
+            exit();
+        } else {
+            // Maneja el caso en el que la creación de la persona falla
+            // Puedes redirigir a una página de error o mostrar un mensaje de error
+            header("Location: ?controller=home&action=error");
+            exit();
+        }
     }
     public function delete()
     {
         if (!isset($_GET['id']))
             return call('pages', 'error');
-            $miembro = Miembro::delete($_GET['id']);
+        $miembro = Miembro::delete($_GET['id']);
 
-            if ($miembro) {
-                // Redirige a una página de éxito o muestra un mensaje de éxito
-                header("Location: ?controller=miembros&action=index");
-                exit();
-            } else {
-                // Maneja el caso en el que la creación de la persona falla
-                // Puedes redirigir a una página de error o mostrar un mensaje de error
-                header("Location: ?controller=home&action=error");
-                exit();
-            }
+        if ($miembro) {
+            // Redirige a una página de éxito o muestra un mensaje de éxito
+            header("Location: ?controller=miembros&action=index");
+            exit();
+        } else {
+            // Maneja el caso en el que la creación de la persona falla
+            // Puedes redirigir a una página de error o mostrar un mensaje de error
+            header("Location: ?controller=home&action=error");
+            exit();
+        }
     }
 }
